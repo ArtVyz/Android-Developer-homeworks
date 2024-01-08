@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="phone_back_color">#BB86FC</color>
+    <color name="scores_info_color">#444444</color>
+    <color name="check_box_color">#03DAC5</color>
+    <color name="light_black">#4A000000</color>
+    <color name="unable_check_box_color">#6F03DAC5</color>
+</resources>

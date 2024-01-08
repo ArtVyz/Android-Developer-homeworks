@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name" translatable="false">HomeWork4</string>
+    <string name="hint" translatable="false">Имя</string>
+    <string name="input_name" translatable="false">Введите имя кота</string>
+    <string name="input_number" translatable="false">Введите номер (10 цифр)</string>
+    <string name="gender">Пол</string>
+    <string name="gender_boy">М</string>
+    <string name="gender_girl">Ж</string>
+    <string name="notifications">Получать уведомления</string>
+    <string name="authorization_notification">Об авторизации на устройствах</string>
+    <string name="authorization_news_and_offers">О новинках и предложениях</string>
+    <string name="scores">Баллы</string>
+    <string name="text_button_save">Сохранить</string>
+    <string name="cat_s_avatar">Cat\'s avatar</string>
+</resources>
