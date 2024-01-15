@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Happy_quiz</string>
+    <string name="app_name">HappyQuiz</string>
+    <string name="welcome_picture">welcome picture</string>
+    <string name="button_continue">Продолжить</string>
 </resources>
