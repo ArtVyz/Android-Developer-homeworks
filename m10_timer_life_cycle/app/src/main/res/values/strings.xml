@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HomeWork6</string>
+    <string name="text_button">Представиться</string>
+    <string name="check_box_text">У меня есть отчество</string>
+    <string name="second_name_hint_text">Фамилия</string>
+    <string name="first_name_hint_text">Имя</string>
+    <string name="patronymic_hint_text">Отчество</string>
+    <string name="save_button_text">Сохранить</string>
+    <string name="full_name">%s %s %s</string>
+</resources>

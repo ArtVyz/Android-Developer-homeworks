@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding.buttonSave.isEnabled = false
 
         val mapOfEnable =
-            mutableMapOf<String, Boolean>(    // Мапка для проверки условий для кнопки "сохранить"
+            mutableMapOf<String, Boolean>(                  // Мапка для проверки условий для кнопки "сохранить"
                 "Имя" to false,
                 "Номер" to false,
                 "Пол" to false,
