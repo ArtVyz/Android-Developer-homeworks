@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.introduceButton.setOnClickListener {
-            authLauncher.launch(Intent(this, FillingActivity::class.java))
+            val intent = (Intent(this, FillingActivity::class.java))
             intent.putExtra("text", havePatronymic)
             startActivity(intent)
         }
