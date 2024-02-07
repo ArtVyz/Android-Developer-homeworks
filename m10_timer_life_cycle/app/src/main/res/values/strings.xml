@@ -6,5 +6,5 @@
     <string name="first_name_hint_text">Имя</string>
     <string name="patronymic_hint_text">Отчество</string>
     <string name="save_button_text">Сохранить</string>
-    <string name="full_name">%s %s %s</string>
+    <string name="full_name">Привет %s %s %s</string>
 </resources>

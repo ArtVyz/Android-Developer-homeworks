@@ -23,8 +23,7 @@ class FillingActivity : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener{
-            val fullName: Any
-            fullName = if ( binding.patronymicInput.visibility == View.VISIBLE) {
+            val fullName: Name = if ( binding.patronymicInput.visibility == View.VISIBLE) {
                 Name (
                     secondName = binding.secondName.text.toString(),
                     firstName = binding.firstName.text.toString(),
