@@ -3,6 +3,7 @@ package com.example.homework6
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.homework6.databinding.ActivityFillingBinding
@@ -15,6 +16,7 @@ class FillingActivity : AppCompatActivity() {
 
         val launchIntent: Intent = intent
         val patronymicVisibility: String? = launchIntent.getStringExtra("text")
+        Log.d("MyLog", "передалось $patronymicVisibility")
 
         if (patronymicVisibility == "1") {
             binding.patronymicInput.visibility = View.VISIBLE

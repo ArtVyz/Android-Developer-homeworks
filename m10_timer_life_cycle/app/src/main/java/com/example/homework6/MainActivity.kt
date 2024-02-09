@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var havePatronymic = ""
@@ -43,8 +43,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.introduceButton.setOnClickListener {
-            launcher.launch(Intent(this, FillingActivity::class.java))
-//            putExtra("text", havePatronymic)  пока убрал, не знаю как передать с лаунчером
+            val intent = Intent(this,FillingActivity::class.java)
+            intent.putExtra("text", havePatronymic)
+            launcher.launch(intent)
         }
     }
 }
