@@ -18,23 +18,32 @@
         android:id="@+id/surveyFragment"
         android:name="com.example.homework5.SurveyFragment"
         android:label="fragment_survey"
-        tools:layout="@layout/fragment_survey" >
+        tools:layout="@layout/fragment_survey">
         <action
             android:id="@+id/action_surveyFragment_to_mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_surveyFragment_to_resultFragment"
+            app:popUpTo="@id/surveyFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/resultFragment" />
-        <argument
-            android:name="MyArg"
-            app:argType="string" />
 
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.homework5.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
+        tools:layout="@layout/fragment_result">
 
+        <action
+            android:id="@+id/action_resultFragment_to_surveyFragment"
+            app:popUpTo="@id/resultFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/surveyFragment" />
+        <argument
+            android:name="MyArg"
+            app:argType="string" />
     </fragment>
 </navigation>

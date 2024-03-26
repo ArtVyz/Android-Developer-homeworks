@@ -24,8 +24,8 @@ class SurveyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val qustions = QuizStorage.getQuiz(QuizStorage.Locale.Ru)
-        val listOfQustions = qustions.questions
+        val questions = QuizStorage.getQuiz(QuizStorage.Locale.Ru)
+        val listOfQustions = questions.questions
 
         binding.questionOne.text = listOfQustions[0].question
         binding.answerQOne1.text = listOfQustions[0].answers[0]
@@ -78,12 +78,10 @@ class SurveyFragment : Fragment() {
             findNavController().navigate(R.id.action_surveyFragment_to_mainFragment)
         }
 
-        val bundle = Bundle()
-
         binding.buttonSend.setOnClickListener {
-//            val string = "String"
-//            bundle.putString("MyArg",string)
-            findNavController().navigate(R.id.action_surveyFragment_to_resultFragment)
+            val answersForSend = QuizStorage.answer(questions, answers)
+            val action = SurveyFragmentDirections.actionSurveyFragmentToResultFragment(answersForSend)
+            findNavController().navigate(action)
         }
     }
 }
