@@ -1,5 +1,6 @@
 package com.example.homework5
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,36 @@ class SurveyFragment : Fragment() {
         binding.answerQThree4.text = listOfQustions[2].answers[3]
 
         val answers = mutableListOf<Int>()
+
+        val question1 = binding.questionOne
+        ObjectAnimator.ofFloat(question1,
+            View.ALPHA,
+            0f,
+            1f
+        ).apply {
+            duration = 5000
+            start()
+        }
+
+        val question2 = binding.questionTwo
+        ObjectAnimator.ofFloat(question2,
+            View.ALPHA,
+            0f,
+            1f
+        ).apply {
+            duration = 5000
+            start()
+        }
+
+        val question3 = binding.questionThree
+        ObjectAnimator.ofFloat(question3,
+            View.ALPHA,
+            0f,
+            1f
+        ).apply {
+            duration = 5000
+            start()
+        }
 
         binding.questionGroup1.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
