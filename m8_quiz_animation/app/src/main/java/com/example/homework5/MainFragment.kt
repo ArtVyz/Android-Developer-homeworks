@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.homework5.databinding.MainFragmentBinding
 import com.example.skillbox_hw_quiz.quiz.QuizStorage
+import com.google.android.material.datepicker.MaterialDatePicker
 
 class MainFragment : Fragment() {
 
@@ -24,6 +25,12 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.birthdayButton.setOnClickListener {
+            MaterialDatePicker.Builder.datePicker()
+                .build()
+                .show(supportFragmentManager,"DataPiker")
+        }
 
         binding.buttonStart.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_surveyFragment)
