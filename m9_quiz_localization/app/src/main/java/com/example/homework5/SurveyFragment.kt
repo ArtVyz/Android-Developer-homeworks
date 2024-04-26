@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.homework5.databinding.FragmentSurveyBinding
+import com.example.skillbox_hw_quiz.quiz.Quiz
 import com.example.skillbox_hw_quiz.quiz.QuizStorage
 
 class SurveyFragment : Fragment() {
@@ -25,26 +26,31 @@ class SurveyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val questions = QuizStorage.getQuiz(QuizStorage.Locale.Ru)
-        val listOfQustions = questions.questions
+        val questions: Quiz = if(binding.buttonSend.text == "Отправить") {
+            QuizStorage.getQuiz(QuizStorage.Locale.Ru)
+        } else {
+            QuizStorage.getQuiz(QuizStorage.Locale.En)
+        }
 
-        binding.questionOne.text = listOfQustions[0].question
-        binding.answerQOne1.text = listOfQustions[0].answers[0]
-        binding.answerQOne2.text = listOfQustions[0].answers[1]
-        binding.answerQOne3.text = listOfQustions[0].answers[2]
-        binding.answerQOne4.text = listOfQustions[0].answers[3]
+        val listOfQuestions = questions.questions
 
-        binding.questionTwo.text = listOfQustions[1].question
-        binding.answerQTwo1.text = listOfQustions[1].answers[0]
-        binding.answerQTwo2.text = listOfQustions[1].answers[1]
-        binding.answerQTwo3.text = listOfQustions[1].answers[2]
-        binding.answerQTwo4.text = listOfQustions[1].answers[3]
+        binding.questionOne.text = listOfQuestions[0].question
+        binding.answerQOne1.text = listOfQuestions[0].answers[0]
+        binding.answerQOne2.text = listOfQuestions[0].answers[1]
+        binding.answerQOne3.text = listOfQuestions[0].answers[2]
+        binding.answerQOne4.text = listOfQuestions[0].answers[3]
 
-        binding.questionThree.text = listOfQustions[2].question
-        binding.answerQThree1.text = listOfQustions[2].answers[0]
-        binding.answerQThree2.text = listOfQustions[2].answers[1]
-        binding.answerQThree3.text = listOfQustions[2].answers[2]
-        binding.answerQThree4.text = listOfQustions[2].answers[3]
+        binding.questionTwo.text = listOfQuestions[1].question
+        binding.answerQTwo1.text = listOfQuestions[1].answers[0]
+        binding.answerQTwo2.text = listOfQuestions[1].answers[1]
+        binding.answerQTwo3.text = listOfQuestions[1].answers[2]
+        binding.answerQTwo4.text = listOfQuestions[1].answers[3]
+
+        binding.questionThree.text = listOfQuestions[2].question
+        binding.answerQThree1.text = listOfQuestions[2].answers[0]
+        binding.answerQThree2.text = listOfQuestions[2].answers[1]
+        binding.answerQThree3.text = listOfQuestions[2].answers[2]
+        binding.answerQThree4.text = listOfQuestions[2].answers[3]
 
         val answers = mutableListOf<Int>()
 

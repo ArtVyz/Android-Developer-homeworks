@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">HappyQuiz</string>
-    <string name="welcome_picture">welcome picture</string>
-    <string name="button_continue">Продолжить</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="survey">Survey</string>
-    <string name="button_back_text">Назад</string>
-    <string name="button_sand_text">Отправить</string>
+    <string name="description_welcome_picture">Welcome picture</string>
+    <string name="button_continue_text">Continue</string>
+    <string name="description_survey">Survey</string>
+    <string name="button_back_text">Back</string>
+    <string name="button_sand_text">Send</string>
+    <string name="choose_your_birthday">Choose your birthday</string>
 </resources>

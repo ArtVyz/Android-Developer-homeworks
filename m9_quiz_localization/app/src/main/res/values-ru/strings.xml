@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HappyQuiz</string>
+    <string name="description_welcome_picture">Приветственная картинка</string>
+    <string name="button_continue_text">Продолжить</string>
+    <string name="description_survey">Опрос</string>
+    <string name="button_back_text">Назад</string>
+    <string name="button_sand_text">Отправить</string>
+    <string name="choose_your_birthday">Выбирите дату рождения</string>
+</resources>
