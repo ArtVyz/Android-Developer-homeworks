@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Homework 11</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="button_text_save">Сохранить</string>
+    <string name="button_clean_text">Очистить</string>
+</resources>
