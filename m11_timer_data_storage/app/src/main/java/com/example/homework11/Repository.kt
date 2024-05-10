@@ -5,16 +5,15 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
 private const val PREFERENCE_NAME = "preference_name"
-private const val SHARED_PREFS_KEY = "shared_prefs_key"
 private const val KEY_STRING_NAME = "key_string"
 class Repository {
-    private lateinit var localVariable: String
+    private var localVariable: String? = null
     private fun getDataFromSharedPreference(context: Context): String? {
         val prefs = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
-        return prefs.getString(SHARED_PREFS_KEY,null)
+        return prefs.getString(KEY_STRING_NAME,null)
     }
     private fun getDataFromLocalVariable(): String? {
-        return localVariable.ifEmpty {
+        return localVariable?.ifEmpty {
             null
         }
     }
