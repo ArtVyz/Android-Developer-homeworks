@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainViewModel(private val authService: IAuthService) {
     private val _state = MutableStateFlow<State>(State.Success)
@@ -15,8 +16,7 @@ class MainViewModel(private val authService: IAuthService) {
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private val viewState = MutableStateFlow(
         ViewState(
-            isButtonEnabled = false,
-            isProgressVisible = false
+            isButtonEnabled = false
         )
     )
 
@@ -34,19 +34,16 @@ class MainViewModel(private val authService: IAuthService) {
     private fun checkInputValid(): Boolean = search.length >= 3
 
     fun searchStarted() {
-        _state.value = State.Loading
-        viewState.value = viewState.value.copy(isProgressVisible = true)
-        authService.auth(search) {
-            viewState.value = viewState.value.copy(isProgressVisible = false)
-            scope.launch {
-                found.emit(Unit)
+            _state.value = State.Loading
+            authService.auth(search) {
                 _state.value = State.Success
+                scope.launch {
+                    found.emit(Unit)
+                }
             }
         }
-    }
 
     data class ViewState(
-        val isButtonEnabled: Boolean,
-        val isProgressVisible: Boolean
+        val isButtonEnabled: Boolean
     )
 }

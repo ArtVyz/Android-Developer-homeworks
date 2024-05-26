@@ -9,7 +9,7 @@ class AuthService: IAuthService {
 
     override fun auth(searchQuery: String, onSearchedIn: () -> Unit) {
         thread {
-            Thread.sleep(2000L)
+            Thread.sleep(5000L)
             handler.post {
                 onSearchedIn.invoke()
             }
