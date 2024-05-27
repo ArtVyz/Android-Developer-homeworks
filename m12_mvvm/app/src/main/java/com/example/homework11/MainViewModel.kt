@@ -1,5 +1,6 @@
 package com.example.homework11
 
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class MainViewModel(private val authService: IAuthService) {
+class MainViewModel(private val authService: IAuthService): ViewModel() {
     private val _state = MutableStateFlow<State>(State.Success)
     private var search = ""
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
