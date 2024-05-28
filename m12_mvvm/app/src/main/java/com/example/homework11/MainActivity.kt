@@ -3,6 +3,7 @@ package com.example.homework11
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -14,20 +15,20 @@ import com.example.homework11.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainViewModel
+    private val _viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = MainViewModel(AuthService())
+        val viewModel = _viewModel
 
         binding.searchingEdit.addTextChangedListener {
             viewModel.searchQueryEntered(it.toString())
         }
 
         binding.buttonSearch.setOnClickListener {
-            viewModel.searchStarted()
+            viewModel.searchStarted(binding.searchingEdit.text.toString())
         }
 
         lifecycleScope.launch {
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.foundFlow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect {
                     binding.result.text =
-                        "По запросу \"${binding.searchingEdit.text}\" ничего не найдено"
+                        "По запросу \"${it}\" ничего не найдено"
                 }
         }
     }
