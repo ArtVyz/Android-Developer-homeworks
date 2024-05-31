@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    private val _state = MutableStateFlow<State>(State.Initial)
+    private val _state = MutableStateFlow<State>(State.Initial())
     var search = ""
     private val scope = viewModelScope
     private val viewState = MutableStateFlow(
@@ -22,8 +21,6 @@ class MainViewModel : ViewModel() {
     val state = _state.asStateFlow()
     val viewStateFlow: Flow<ViewState> = viewState
 
-    private val found = MutableStateFlow<String>("Запрос")
-    val foundFlow: Flow<String> = found
 
     fun searchQueryEntered(searchQuery: String) {
         search = searchQuery
@@ -34,10 +31,11 @@ class MainViewModel : ViewModel() {
 
     fun searchStarted(query: String) {
         scope.launch {
-            _state.value = State.Loading
+            _state.value = State.Loading()
             delay(6000)
             search = query
-            _state.value = State.Success
+            _state.value = State.Success()
+
         }
     }
 

@@ -11,6 +11,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.homework11.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel = _viewModel
+
+        binding.mainView = viewModel
 
         binding.searchingEdit.addTextChangedListener {
             viewModel.searchQueryEntered(it.toString())
@@ -39,28 +43,28 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        lifecycleScope.launch {
-            viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { state ->
-                    when (state) {
-                        State.Initial -> {
-                            binding.result.text = getString(R.string.start_text)
-                            binding.progress.isVisible = false
-                        }
-
-                        State.Loading -> {
-                            Log.d(TAG, "State.Loading!!!")
-                            binding.progress.isVisible = true
-                        }
-
-                        State.Success -> {
-                            Log.d(TAG, "State.Success!!!")
-                            binding.progress.isVisible = false
-                            binding.result.text =
-                                "${getString(R.string.not_faunded_text_part_one)} \"${viewModel.search}\" ${getString(R.string.not_faunded_text)}"
-                        }
-                    }
-                }
-        }
+//        lifecycleScope.launch {
+//            viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+//                .collect { state ->
+//                    when (state) {
+//                        is State.Initial -> {
+//                            binding.result.text = getString(R.string.start_text)
+//                            binding.progress.isVisible = false
+//                        }
+//
+//                        is State.Loading -> {
+//                            binding.progress.isVisible = true
+//                            binding.buttonSearch.isEnabled = false
+//                        }
+//
+//                        is State.Success -> {
+//                            binding.progress.isVisible = false
+//                            binding.buttonSearch.isEnabled = true
+//                            binding.result.text =
+//                                "${getString(R.string.not_faunded_text_part_one)} \"${viewModel.search}\" ${getString(R.string.not_faunded_text)}"
+//                        }
+//                    }
+//                }
+//        }
     }
 }
