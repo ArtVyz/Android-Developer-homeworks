@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    private val _state = MutableStateFlow<State>(State.Initial())
+    private val _state = MutableStateFlow<State>(State.Initial)
     var search = ""
     private val scope = viewModelScope
     private val viewState = MutableStateFlow(
@@ -31,10 +31,10 @@ class MainViewModel : ViewModel() {
 
     fun searchStarted(query: String) {
         scope.launch {
-            _state.value = State.Loading()
+            _state.value = State.Loading
             delay(6000)
             search = query
-            _state.value = State.Success()
+            _state.value = State.Success
 
         }
     }
