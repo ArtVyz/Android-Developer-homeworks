@@ -1,21 +1,9 @@
 package com.example.homework11
 
 sealed class State {
-    data object Loading : State() {
-        override fun toString(): String {
-            return "Loading"
-        }
-    }
+    data object Loading : State()
 
-    data object Success : State() {
-        override fun toString(): String {
-            return "Success"
-        }
-    }
+    data object Success : State()
 
-    data object Initial : State() {
-        override fun toString(): String {
-            return "Initial"
-        }
-    }
+    data object Initial : State()
 }
