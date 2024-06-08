@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HomeWork11</string>
-    <string name="button_search_text">Поиск</string>
+    <string name="button_cancel_text">Отмена</string>
     <string name="user_name_hint">Что найти?</string>
     <string name="not_faunded_text">ничего не найдено</string>
     <string name="not_faunded_text_part_one">По запросу</string>

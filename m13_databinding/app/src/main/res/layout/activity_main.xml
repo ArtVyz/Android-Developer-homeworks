@@ -22,6 +22,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searching_edit"
             android:layout_width="match_parent"
+            android:onTextChanged="@{(text,before,on,after) -> mainView.searchStarted(text.toString())}"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -31,17 +32,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:visibility="@{mainView.state == State.Loading ? View.VISIBLE : View.GONE}"
+        android:visibility="@{ mainView.state == State.Loading.INSTANCE ? View.VISIBLE : View.GONE}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchingString" />
 
     <Button
-        android:id="@+id/buttonSearch"
+        android:id="@+id/button_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/button_search_text"
+        android:text="@string/button_cancel_text"
+        android:enabled="@{mainView.state == State.Loading.INSTANCE}"
+        android:onClick="@{() -> mainView.onClick()}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress" />
@@ -52,12 +55,13 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSearch">
+        app:layout_constraintTop_toBottomOf="@+id/button_cancel">
 
         <TextView
             android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{mainView.foundedString}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

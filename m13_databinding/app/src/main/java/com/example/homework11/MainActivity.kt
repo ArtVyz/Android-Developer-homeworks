@@ -18,46 +18,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel = _viewModel
-
         binding.mainView = viewModel
 
-        binding.searchingEdit.addTextChangedListener {
-            viewModel.searchQueryEntered(it.toString())
-        }
-
-        binding.buttonSearch.setOnClickListener {
-            viewModel.searchStarted(binding.searchingEdit.text.toString())
-        }
 
         lifecycleScope.launch {
-            viewModel.viewStateFlow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { viewState ->
-                    with(binding) {
-                        buttonSearch.isEnabled = viewState.isButtonEnabled
+            viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { state ->
+                    when (state) {
+                        is State.Initial -> {
+                            binding.invalidateAll()
+                        }
+
+                        is State.Loading -> {
+                            binding.invalidateAll()
+                        }
+
+                        is State.Success -> {
+                            binding.invalidateAll()
+                        }
                     }
                 }
         }
-
-//        lifecycleScope.launch {
-//            viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-//                .collect { state ->
-//                    when (state) {
-//                        is State.Initial -> {
-//                            binding.result.text = getString(R.string.start_text)
-//                        }
-//
-//                        is State.Loading -> {
-//                            binding.buttonSearch.isEnabled = false
-//                        }
-//
-//                        is State.Success -> {
-//                            binding.buttonSearch.isEnabled = true
-//                            binding.result.text =
-//                                "${getString(R.string.not_faunded_text_part_one)} \"${viewModel.search}\" ${getString(R.string.not_faunded_text)}"
-//                        }
-//                    }
-//                }
-//        }
 
     }
 }
