@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://randomuser.me"
+private const val BASE_URL = "https://randomuser.me/"
 
 object RetrofitInstance {
     private val retrofit = Retrofit.Builder()
@@ -20,10 +20,6 @@ object RetrofitInstance {
 }
 
 interface SearchUserApi {
-    @Headers (
-        "Accept",
-        "Content-type"
-    )
-    @GET ("/api/")
-    fun getUserInfo (@Query("limit") limit: Int = 1)
+    @GET ("api/")
+    fun getUserInfo (): Call<List<UsersInfo>>
 }
