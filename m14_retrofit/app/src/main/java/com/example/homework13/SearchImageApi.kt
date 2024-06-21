@@ -25,5 +25,5 @@ interface SearchUserApi {
         "Content-type"
     )
     @GET ("/api/")
-    fun getUserInfo (@Query("limit") limit: Int = 1)
+    fun getUserInfo (@Query("limit") limit: Int = 1) : UsersInfo
 }
