@@ -1,12 +1,17 @@
 package com.example.homework13.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.homework13.RetrofitInstance
+import com.example.homework13.UsersInfo
 import com.example.homework13.databinding.FragmentMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainFragment : Fragment() {
 
@@ -27,7 +32,22 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        RetrofitInstance.searchUserApi.getUserInfo()
+        RetrofitInstance.searchUserApi.getUserInfo().enqueue(object : Callback<List<UsersInfo>> {
+            override fun onResponse(
+                call: Call<List<UsersInfo>>,
+                response: Response<List<UsersInfo>>
+            ) {
+                if(response.isSuccessful) {
+                    val user = response.body()?.first() ?: return
+                    binding.message.text = user.toString()
+                }
+            }
+
+            override fun onFailure(call: Call<List<UsersInfo>>, t: Throwable) {
+                Log.e("RetrofitText", "GetUserFailure11111111")
+            }
+        }
+        )
     }
 
     override fun onDestroyView() {
