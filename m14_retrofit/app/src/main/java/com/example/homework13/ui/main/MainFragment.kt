@@ -35,7 +35,7 @@ class MainFragment : Fragment() {
                 val user = response.body()?.first() ?: return
             }
             override fun onFailure(call: Call<List<UsersInfo>>, t: Throwable) {
-                Log.e("Network", "Something went wrong")
+                Log.e("Network", "Something went wro")
             }
         })
     }
