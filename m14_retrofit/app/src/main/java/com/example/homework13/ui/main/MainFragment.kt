@@ -6,9 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.example.homework13.RetrofitInstance
+import com.example.homework13.State
 import com.example.homework13.UsersInfo
 import com.example.homework13.databinding.FragmentMainBinding
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,11 +24,7 @@ class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,27 +35,23 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        RetrofitInstance.searchUserApi.getUserInfo().enqueue(object : Callback<List<UsersInfo>> {
-            override fun onResponse(
-                call: Call<List<UsersInfo>>,
-                response: Response<List<UsersInfo>>
-            ) {
-                if(response.isSuccessful) {
-                    val user = response.body()?.first() ?: return
-                    binding.message.text = user.toString()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        lifecycleScope.launch {
+            viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { state ->
+                    when (state) {
+                        State.LOADING -> {
+                            viewModel.getUserModel()
+                        }
+                        State.SUCCESS -> {
+
+                        }
+                        State.ERROR -> {
+
+                        }
+                    }
                 }
-            }
-
-            override fun onFailure(call: Call<List<UsersInfo>>, t: Throwable) {
-                Log.e("RetrofitText", "GetUserFailure11111111")
-            }
         }
-        )
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
                     foundedString.value = "Идет поиск"
                     delay(5000)
                     _state.value = State.Success(textResult)
-                    foundedString.value = "По запросу \"$text\" ничего не найдено "
+                    foundedString.value = "По запросу \"$text\" ничего не найдено"
                 }
             }
         }
