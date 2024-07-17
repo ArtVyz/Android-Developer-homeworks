@@ -19,5 +19,5 @@ object RetrofitInstance {
 
 interface SearchUserApi {
     @GET ("/api/")
-    fun getUserInfo () : Call<UsersInfo>
+    suspend fun getUserInfo () : UsersInfo
 }

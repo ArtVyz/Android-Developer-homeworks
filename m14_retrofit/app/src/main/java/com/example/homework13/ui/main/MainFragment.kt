@@ -41,12 +41,18 @@ class MainFragment : Fragment() {
             viewModel.state.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect { state ->
                     when (state) {
-                        State.LOADING -> {
+                        State.INITIAL -> {
                             viewModel.getUserModel()
                         }
+
+                        State.LOADING -> {
+
+                        }
+
                         State.SUCCESS -> {
 
                         }
+
                         State.ERROR -> {
 
                         }

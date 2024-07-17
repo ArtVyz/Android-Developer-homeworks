@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HomeWork15</string>
+    <string name="button_add_text">Добавить</string>
+    <string name="button_clean_text">Удалить</string>
+</resources>
