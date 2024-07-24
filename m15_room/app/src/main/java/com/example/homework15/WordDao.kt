@@ -4,12 +4,11 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WordDao {
-    @Query("SELECT * FROM word")
+    @Query("SELECT * FROM word LIMIT 5")
     fun getAll(): Flow<List<Word>>
 
     @Insert
@@ -18,6 +17,6 @@ interface WordDao {
     @Delete
     suspend fun delete(word: Word)
 
-    @Update
-    suspend fun update(word: Word)
+    @Query("UPDATE word SET repetitions = repetitions + 1 WHERE word LIKE :word")
+    suspend fun update(word: String)
 }
