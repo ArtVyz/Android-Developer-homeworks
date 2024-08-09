@@ -1,11 +1,9 @@
 package com.example.homework13.ui.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homework13.RetrofitInstance
 import com.example.homework13.State
-import com.example.homework13.UsersInfo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
