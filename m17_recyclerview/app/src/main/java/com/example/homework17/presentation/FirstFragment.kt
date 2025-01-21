@@ -10,8 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.homework17.R
-import com.example.homework17.data.api.MyAdapter
+import com.example.homework17.presentation.UI.MyAdapter
 import com.example.homework17.databinding.FragmentFirstBinding
 import com.example.homework17.entity.Photos
 import kotlinx.coroutines.launch
