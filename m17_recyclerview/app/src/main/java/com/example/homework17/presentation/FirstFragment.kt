@@ -12,23 +12,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.homework17.R
 import com.example.homework17.data.api.MyAdapter
-import com.example.homework17.databinding.FragmentMainBinding
+import com.example.homework17.databinding.FragmentFirstBinding
 import com.example.homework17.entity.Photos
 import kotlinx.coroutines.launch
 
-class FragmentMain : Fragment() {
+class FirstFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
-    private val myAdapter = MyAdapter { photos -> onItemClick(photos) }
+    private val myAdapter = MyAdapter {photos -> onItemClick(photos)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater)
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +43,13 @@ class FragmentMain : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     fun onItemClick(item: Photos) {
-        findNavController().navigate(R.id.action_main_fragment_to_fullScreenPhotoFragment)
+        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(item.img_src)
+        findNavController().navigate(action)
     }
 }

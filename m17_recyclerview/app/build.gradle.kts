@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -33,7 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
     buildFeatures {
         viewBinding = true
     }
@@ -57,7 +57,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
 
     // Feature module support for Fragments
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.5")
+    implementation ("androidx.navigation:navigation-dynamic-features-fragment:2.8.5")
+
+    // Testing Navigation
+    androidTestImplementation ("androidx.navigation:navigation-testing:2.8.5")
 
     //  Viewmodel......................................................
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")

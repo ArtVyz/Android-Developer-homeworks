@@ -9,7 +9,6 @@ import com.example.homework17.entity.Photos
 
 class MyAdapter(
     private val onClick: (Photos) -> Unit
-//    private val data: List<Photos>
 ) : RecyclerView.Adapter<MySimpleViewHolder>() {
 
     private var data: List<Photos> = emptyList()
@@ -40,9 +39,7 @@ class MyAdapter(
             }
         }
         holder.binding.root.setOnClickListener {
-            item?.let {
-                onClick(item)
-            }
+            onClick(item)
         }
     }
 

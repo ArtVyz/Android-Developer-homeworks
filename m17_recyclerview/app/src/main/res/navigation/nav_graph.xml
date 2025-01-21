@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentMain">
+    app:startDestination="@id/FirstFragment">
 
     <fragment
-        android:id="@+id/fragmentMain"
-        android:name="com.example.homework17.presentation.FragmentMain"
-        android:label="MainFragment"
-        tools:layout="@layout/fragment_main">
+        android:id="@+id/FirstFragment"
+        android:name="com.example.homework17.presentation.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
 
         <action
-            android:id="@+id/action_main_fragment_to_fullScreenPhotoFragment"
-            app:destination="@id/fullScreenPhotoFragment" />
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fullScreenPhotoFragment"
-        android:name="com.example.homework17.presentation.FullScreenPhotoFragment"
-        android:label="fragment_full_screen_photo"
-        tools:layout="@layout/fragment_full_screen_photo"
-        >
+        android:id="@+id/SecondFragment"
+        android:name="com.example.homework17.presentation.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
         <action
-            android:id="@+id/action_fullScreenPhotoFragment_to_nav_host"
-            app:destination="@id/fragmentMain" />
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <argument
+            android:name="MyArg"
+            app:argType="string" />
+
     </fragment>
-
-
 </navigation>
